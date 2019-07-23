@@ -9,4 +9,4 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.core_ctl_max_cpu=4
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.min_freq_0=800000
+    ro.min_freq_0=400000
