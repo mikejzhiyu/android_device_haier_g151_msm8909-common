@@ -5,8 +5,6 @@ PRODUCT_PACKAGES += \
 # Properties
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=libqti-perfd-client.so \
-    ro.core_ctl_min_cpu=0 \
-    ro.core_ctl_max_cpu=4
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.min_freq_0=400000
+    ro.core_ctl_min_cpu=2 \
+    ro.core_ctl_max_cpu=4 \
+    ro.min_freq_0=800000
