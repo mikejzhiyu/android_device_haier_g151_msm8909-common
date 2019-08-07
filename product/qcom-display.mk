@@ -10,7 +10,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.composition.type=dyn \
     debug.mdpcomp.idletime=600 \
-    persist.hwc.mdpcomp.enable=true \
+    persist.hwc.mdpcomp.enable=false \
     persist.hwc.ptor.enable=true \
     debug.enable.sglscale=1
 
