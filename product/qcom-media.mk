@@ -1,23 +1,14 @@
 # Media
 PRODUCT_PACKAGES += \
     libextmedia_jni \
-    libOmxAacEnc \
-    libOmxAmrEnc \
     libOmxCore \
-    libOmxEvrcEnc \
-    libOmxQcelp13Enc \
     libOmxVdec \
     libOmxVenc \
-    libstagefrighthw \
-    libstagefright_soft_flacdec
+    libstagefrighthw
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml
-
-# Properties
-PRODUCT_PROPERTY_OVERRIDES += \
-    drm.service.enabled=1 \
-    vidc.enc.narrow.searchrange=1
+    $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
+    $(LOCAL_PATH)/configs/media_codecs_performance.xml:system/etc/media_codecs_performance.xml
 
 # Storage
 PRODUCT_PROPERTY_OVERRIDES += \

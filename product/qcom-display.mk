@@ -5,6 +5,3 @@ PRODUCT_PACKAGES += \
     hwcomposer.msm8909 \
     libtinyxml \
     memtrack.msm8909
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.opengles.version=196608
