@@ -1,6 +1,5 @@
 # Media
 PRODUCT_PACKAGES += \
-    libextmedia_jni \
     libOmxCore \
     libOmxVdec \
     libOmxVenc \
