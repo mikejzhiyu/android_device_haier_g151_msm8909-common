@@ -46,7 +46,8 @@ USE_CUSTOM_AUDIO_POLICY := 1
 BOARD_HAVE_BLUETOOTH_QCOM := true
 
 # Camera
-TARGET_NEEDS_LEGACY_CAMERA_HAL1_DYN_NATIVE_HANDLE := true
+TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
+    /system/vendor/bin/mm-qcamera-daemon=23
 
 # Display
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
@@ -55,7 +56,7 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
-
+TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS := 0x02000000
 TARGET_CONTINUOUS_SPLASH_ENABLED := true
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 TARGET_USES_GRALLOC1 := true
@@ -66,6 +67,9 @@ USE_OPENGL_RENDERER := true
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
+
+# Exclude serif fonts for saving system.img size.
+EXCLUDE_SERIF_FONTS := true
 
 # Filesystem
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -83,7 +87,7 @@ TARGET_RECOVERY_DEVICE_MODULES := libinit_msm8909
 
 # Kernel
 BOARD_KERNEL_BASE := 0x80000000
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 loop.max_part=7
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
 BOARD_RAMDISK_OFFSET := 0x02000000
@@ -93,6 +97,14 @@ DEVICE_MANIFEST_FILE := $(PLATFORM_PATH)/manifest.xml
 
 # Media
 TARGET_USES_MEDIA_EXTENSIONS := true
+
+# Power
+TARGET_HAS_LEGACY_POWER_STATS := true
+ifeq ($(TARGET_BOARD_PLATFORM_VARIANT),msm8909)
+TARGET_HAS_NO_POWER_STATS := true
+endif
+TARGET_HAS_NO_WLAN_STATS := true
+TARGET_USES_INTERACTION_BOOST := true
 
 # Properties
 TARGET_SYSTEM_PROP += $(PLATFORM_PATH)/system.prop
@@ -111,8 +123,7 @@ TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_cm
 TARGET_RELEASETOOLS_EXTENSIONS := $(PLATFORM_PATH)
 
 # SELinux
-include device/qcom/sepolicy/sepolicy.mk
-include device/qcom/sepolicy/legacy-sepolicy.mk
+include device/qcom/sepolicy-legacy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += \
     $(PLATFORM_PATH)/sepolicy
 
@@ -132,6 +143,7 @@ BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
 
 PRODUCT_VENDOR_MOVE_ENABLED := true
+TARGET_DISABLE_WCNSS_CONFIG_COPY := true
 TARGET_USES_QCOM_WCNSS_QMI := true
 
 WIFI_DRIVER_FW_PATH_AP := "ap"
